@@ -15,7 +15,8 @@ function getCurrentTabHost(callback) {
 }
 
 function renderRules(data) {
-    
+    const name = document.getElementById('site_name');
+    name.innerHTML = `Password Rules for ${data.site}`;
 }
 
 document.addEventListener('DOMContentLoaded', function() {
