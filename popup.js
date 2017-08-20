@@ -14,9 +14,38 @@ function getCurrentTabHost(callback) {
     })
 }
 
-function renderRules(data) {
+function renderRules(host, data) {
     const name = document.getElementById('site_name');
-    name.innerHTML = `Password Rules for ${data.site}`;
+    const list = document.getElementById('rules');
+    if(data) {
+        name.innerHTML = `Password Rules for ${data.site}`;
+        const ruleStrings = data.rules.map(rulesToTextMapper);
+        for(let string of ruleStrings) {
+            let li = document.createElement('li');
+            li.innerHTML = string;
+            list.appendChild(li);
+        }
+    }
+    else {
+        name.innerHTML = `No entry found for ${host}`;
+    }
+}
+
+function rulesToTextMapper(rule) {
+    switch(rule.rule) {
+        case 'Range':
+            return `Between ${rule.quantity[0]} and ${rule.quantity[1]} ${rule.category}`;
+            break;
+        case 'Minimum':
+            return `At least ${rule.quantity[0]} ${rule.category}`;
+            break;
+        case 'Maximum':
+            return `At most ${rule.quantity[0]} ${rule.category}`;
+            break;
+        case 'No':
+            return `No ${rule.category}`;
+            break;
+    }
 }
 
 document.addEventListener('DOMContentLoaded', function() {
@@ -24,7 +53,7 @@ document.addEventListener('DOMContentLoaded', function() {
         fetch(`${apiURL}${host}`, {mode: 'cors'})
         .then(function(response) {
             response.json().then(function(data) {
-                renderRules(data[0]);
+                renderRules(host, data[0]);
             })
         })
     })
