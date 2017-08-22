@@ -6,8 +6,10 @@
       body {
         font-family: "Segoe UI", "Lucida Grande", Tahoma, sans-serif;
         font-size: 100%;
-        min-width: 600px;
-        min-height: 600px;
+        min-width: 500px;
+        min-height: 300px;
+        height: 100%;
+        margin-top: 0;
         text-align: center;
       }
       ul {
@@ -19,6 +21,16 @@
       }
       #app_name_version {
         color: white;
+      }
+      .footer {
+        position: absolute;
+        margin-top: 25px;
+        left: 200px;
+        right: 200px;
+        bottom: 0px;
+        height: 25px;
+        font-size: 75%;
+        text-align: center;
       }
     </style>
     <script src="popup.js"></script>
@@ -33,6 +45,10 @@
       <ul>
       <p id="add_rules_link"></p>
     <div>
+    <div class="footer">
+        <span><a href="http://password-rules.myrandomcode.com" target="_blank">Site</a></span> | 
+        <span><a href="https://github.com/mingtungwong/password-rules-chrome-extension" target="_blank">Github</a></span>
+    </div>
   </body>
 </html>
 
