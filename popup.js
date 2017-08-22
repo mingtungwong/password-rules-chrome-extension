@@ -28,7 +28,15 @@ function renderRules(host, data) {
     }
     else {
         name.innerHTML = `No entry found for ${host}`;
+        const link = document.getElementById('add_rules_link');
+        link.innerHTML = `You can add the entry for ${host} <a href="http://password-rules.myrandomcode.com/#/addsite" target="_blank">here</a>`;
     }
+}
+
+function setAppDetails() {
+    const header = document.getElementById('app_name_version');
+    const manifest = chrome.runtime.getManifest();
+    header.innerHTML = `${manifest.name} version ${manifest.version}`;
 }
 
 function rulesToTextMapper(rule) {
@@ -49,6 +57,7 @@ function rulesToTextMapper(rule) {
 }
 
 document.addEventListener('DOMContentLoaded', function() {
+    setAppDetails();
     getCurrentTabHost(function(host) {
         fetch(`${apiURL}${host}`, {mode: 'cors'})
         .then(function(response) {
