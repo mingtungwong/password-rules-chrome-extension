@@ -29,7 +29,7 @@ function renderRules(host, data) {
     else {
         name.innerHTML = `No entry found for ${host}`;
         const link = document.getElementById('add_rules_link');
-        link.innerHTML = `You can add the entry for ${host} <a href="http://password-rules.myrandomcode.com/#/addsite" target="_blank">here</a>`;
+        link.innerHTML = `You can add the entry for <b><i>${host}</i></b> <a href="http://password-rules.myrandomcode.com/#/addsite/${host}" target="_blank">here</a>`;
     }
 }
 
